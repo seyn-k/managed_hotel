@@ -1,0 +1,22 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: { typeName: 'Room', typeNamePlural: 'Rooms', title: { type: #STANDARD, label: 'Room Number', value: 'RoomNumber' } }
+}
+annotate entity ZCIT_C_MROOM_119 with 
+{
+  @UI.facet: [ { id: 'RoomInfo', purpose: #STANDARD, type: #IDENTIFICATION_REFERENCE, label: 'Room Details', position: 10 } ]
+
+  @UI: { lineItem: [{position: 10, label: 'Booking ID'}], identification: [{ position: 10, label: 'Booking ID' }] }
+  BookingId;
+  @UI: { lineItem: [{position: 20, label: 'Room Number'}], identification: [{ position: 20, label: 'Room Number' }] }
+  RoomNumber;
+  @UI: { lineItem: [{position: 30, label: 'Room Category'}], identification: [{ position: 30, label: 'Room Category' }] }
+  RoomCategory;
+  @UI: { lineItem: [{position: 40, label: 'File Upload'}], identification: [{ position: 40, label: 'File Upload' }] }
+  Attachment;
+  
+  @UI.hidden: true
+  MimeType;
+  @UI.hidden: true
+  FileName;
+}

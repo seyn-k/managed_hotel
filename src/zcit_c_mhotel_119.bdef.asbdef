@@ -1,0 +1,25 @@
+projection;
+strict ( 2 );
+use draft;
+
+define behavior for ZCIT_C_MHOTEL_119 alias Booking
+{
+  use create;
+  use update;
+  use delete;
+
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Prepare;
+  use action Resume;
+
+  use association _Rooms { create; with draft; }
+}
+
+define behavior for ZCIT_C_MROOM_119 alias Room
+{
+  use update;
+  use delete;
+  use association _Booking { with draft; }
+}

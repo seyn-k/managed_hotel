@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definition for hotel management'
+define service ZCIT_C_MHOTEL_119 {
+  expose ZCIT_C_MHOTEL_119 as hotel;
+}

@@ -1,0 +1,22 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: { typeName: 'Hotel Booking', typeNamePlural: 'Hotel Bookings', title: { type: #STANDARD, label: 'Booking', value: 'BookingId' } }
+}
+annotate entity ZCIT_C_MHOTEL_119 with 
+{
+  @UI.facet: [ 
+    { id: 'BookingDetails', purpose: #STANDARD, type: #IDENTIFICATION_REFERENCE, label: 'Booking Details', position: 10 },
+    { id: 'RoomDetails', purpose: #STANDARD, type: #LINEITEM_REFERENCE, label: 'Rooms & Files', position: 20, targetElement: '_Rooms' } 
+  ]
+
+  @UI: { lineItem: [{position: 10, label: 'Booking ID'}], identification: [{position: 10, label: 'Booking ID'}], selectionField: [{position: 10}] }
+  BookingId;
+  @UI: { lineItem: [{position: 20, label: 'Guest Name'}], identification: [{position: 20, label: 'Guest Name'}] }
+  GuestName;
+  @UI: { lineItem: [{position: 30, label: 'Check-In'}], identification: [{position: 30, label: 'Check-In'}] }
+  CheckInDate;
+  @UI: { lineItem: [{position: 40, label: 'Check-Out'}], identification: [{position: 40, label: 'Check-Out'}] }
+  CheckOutDate;
+  @UI: { lineItem: [{position: 50, label: 'Total Price'}], identification: [{position: 50, label: 'Total Price'}] }
+  TotalPrice;
+}

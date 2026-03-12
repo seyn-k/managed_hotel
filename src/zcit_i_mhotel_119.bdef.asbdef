@@ -1,0 +1,70 @@
+managed implementation in class zbp_cit_mhotel_119 unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZCIT_I_MHOTEL_119 alias Booking
+persistent table zcit_mhead_119
+draft table zcit_mhead_119_d
+lock master total etag LocalLastChangedAt
+authorization master ( instance )
+etag master LocalLastChangedAt
+{
+  create;
+  update;
+  delete;
+
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+  draft action Activate optimized;
+  draft action Discard;
+
+  field ( mandatory: create ) BookingId;
+  field ( readonly: update ) BookingId;
+  field ( readonly ) LocalLastChangedAt;
+
+  association _Rooms { create; with draft; }
+
+  mapping for zcit_mhead_119 {
+    BookingId = booking_id;
+    GuestName = guest_name;
+    CheckInDate = check_in_date;
+    CheckOutDate = check_out_date;
+    TotalPrice = total_price;
+    Currency = currency;
+    LocalCreatedBy = local_created_by;
+    LocalCreatedAt = local_created_at;
+    LocalLastChangedBy = local_last_changed_by;
+    LocalLastChangedAt = local_last_changed_at;
+  }
+}
+
+define behavior for ZCIT_I_MROOM_119 alias Room
+persistent table zcit_mitem_119
+draft table zcit_mitem_119_d
+lock dependent by _Booking
+authorization dependent by _Booking
+etag master LocalLastChangedAt
+{
+  update;
+  delete;
+
+  field ( mandatory: create ) RoomNumber;
+  field ( readonly: update ) RoomNumber;
+  field ( readonly ) BookingId;
+
+  association _Booking { with draft; }
+
+  mapping for zcit_mitem_119 {
+    BookingId = booking_id;
+    RoomNumber = room_number;
+    RoomCategory = room_type;
+    Attachment = attachment;
+    MimeType = mimetype;
+    FileName = filename;
+    LocalCreatedBy = local_created_by;
+    LocalCreatedAt = local_created_at;
+    LocalLastChangedBy = local_last_changed_by;
+    LocalLastChangedAt = local_last_changed_at;
+  }
+}
